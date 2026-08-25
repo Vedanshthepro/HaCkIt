@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-cyber-bg: #090d16;
+    --color-cyber-surface: #0f172a;
+    --color-cyber-card: #131d35;
+    --color-cyber-border: #1e293b;
+    --color-cyber-green: #00ff66;
+    --color-cyber-cyan: #00f0ff;
+    --color-cyber-amber: #ffb703;
+    --color-cyber-red: #ff0055;
+    --color-cyber-purple: #9d4edd;
+  }
+
+  body {
+    background-color: #060911;
+    color: #e2e8f0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Custom Tactical Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 240, 255, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00f0ff;
+}
+
+/* Tactical HUD Glows */
+.glow-green {
+  text-shadow: 0 0 8px rgba(0, 255, 102, 0.6), 0 0 20px rgba(0, 255, 102, 0.2);
+}
+.glow-cyan {
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6), 0 0 20px rgba(0, 240, 255, 0.2);
+}
+.glow-red {
+  text-shadow: 0 0 8px rgba(255, 0, 85, 0.6), 0 0 20px rgba(255, 0, 85, 0.2);
+}
+.glow-amber {
+  text-shadow: 0 0 8px rgba(255, 183, 3, 0.6), 0 0 20px rgba(255, 183, 3, 0.2);
+}
+
+.box-glow-cyan {
+  box-shadow: 0 0 15px -3px rgba(0, 240, 255, 0.25), inset 0 0 15px -5px rgba(0, 240, 255, 0.1);
+}
+.box-glow-green {
+  box-shadow: 0 0 15px -3px rgba(0, 255, 102, 0.25), inset 0 0 15px -5px rgba(0, 255, 102, 0.1);
+}
+.box-glow-red {
+  box-shadow: 0 0 15px -3px rgba(255, 0, 85, 0.25), inset 0 0 15px -5px rgba(255, 0, 85, 0.1);
+}
+
+/* CRT Scanlines Overlay */
+.crt-overlay::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  z-index: 999;
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Tactical Corner Borders */
+.tactical-border {
+  position: relative;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(30, 41, 59, 0.8);
+}
+.tactical-border::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #00f0ff;
+  border-left: 2px solid #00f0ff;
+  pointer-events: none;
+}
+.tactical-border::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid #00f0ff;
+  border-right: 2px solid #00f0ff;
+  pointer-events: none;
+}
+
+/* Pulse animation for radar & alert dots */
+@keyframes radar-sweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.animate-radar {
+  animation: radar-sweep 4s linear infinite;
+}
+
+/* Print Styles for Executive Resume */
+@media print {
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
